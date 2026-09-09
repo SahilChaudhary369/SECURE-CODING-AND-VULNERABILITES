@@ -1,0 +1,42 @@
+(a)	an unchecked allocation return value (NULL pointer dereference when malloc fails);
+
+#include <stdlib.h>
+
+int main() {
+    int *arr = NULL;
+
+    /* Simulate malloc failure */
+    arr = malloc(1000000000000ULL * sizeof(int));
+
+    /* No NULL check */
+    arr[0] = 10;
+
+    printf("%d\n", arr[0]);
+
+    free(arr);
+    return 0;
+}
+(b) Demonstrate a use-after-free error using a dangling pointer.
+Explain the behavior and capture the ASan diagnostic. 
+Write a corrected version that checks allocation results, initializes memory after allocation, and sets the pointer to NULL after free. 
+Include the code, ASan output, security impact, and result in the PDF lab report.
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int main() {
+    int *ptr = malloc(sizeof(int));
+
+    if (ptr == NULL) {
+        return 1;
+    }
+
+    *ptr = 100;
+
+    free(ptr);
+
+    printf("%d\n", *ptr);   // use-after-free
+
+    return 0;
+}
+
