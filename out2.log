@@ -1,0 +1,59 @@
+=================================================================
+==129==ERROR: AddressSanitizer: heap-use-after-free on address 0x503000000040 at pc 0x7fce98ea1a6a bp 0x7ffce5bf6530 sp 0x7ffce5bf5ca8
+READ of size 2 at 0x503000000040 thread T0
+    #0 0x7fce98ea1a69 in printf_common ../../../../src/libsanitizer/sanitizer_common/sanitizer_common_interceptors_format.inc:563
+    #1 0x7fce98ece33b in vprintf ../../../../src/libsanitizer/sanitizer_common/sanitizer_common_interceptors.inc:1644
+    #2 0x7fce98ed0180 in printf ../../../../src/libsanitizer/sanitizer_common/sanitizer_common_interceptors.inc:1702
+    #3 0x557ea85ab334 in main /home/claude/lab2/original/snippet2_use_after_free.c:25
+    #4 0x7fce98a2a1c9  (/lib/x86_64-linux-gnu/libc.so.6+0x2a1c9) (BuildId: 8e9fd827446c24067541ac5390e6f527fb5947bb)
+    #5 0x7fce98a2a28a in __libc_start_main (/lib/x86_64-linux-gnu/libc.so.6+0x2a28a) (BuildId: 8e9fd827446c24067541ac5390e6f527fb5947bb)
+    #6 0x557ea85ab1a4 in _start (/home/claude/lab2/original/snippet2_use_after_free_asan+0x11a4) (BuildId: 5496fdff01bf9848b703c0cd0241fdcf55862887)
+
+0x503000000040 is located 0 bytes inside of 32-byte region [0x503000000040,0x503000000060)
+freed by thread T0 here:
+    #0 0x7fce98efc4d8 in free ../../../../src/libsanitizer/asan/asan_malloc_linux.cpp:52
+    #1 0x557ea85ab319 in main /home/claude/lab2/original/snippet2_use_after_free.c:22
+    #2 0x7fce98a2a1c9  (/lib/x86_64-linux-gnu/libc.so.6+0x2a1c9) (BuildId: 8e9fd827446c24067541ac5390e6f527fb5947bb)
+    #3 0x7fce98a2a28a in __libc_start_main (/lib/x86_64-linux-gnu/libc.so.6+0x2a28a) (BuildId: 8e9fd827446c24067541ac5390e6f527fb5947bb)
+    #4 0x557ea85ab1a4 in _start (/home/claude/lab2/original/snippet2_use_after_free_asan+0x11a4) (BuildId: 5496fdff01bf9848b703c0cd0241fdcf55862887)
+
+previously allocated by thread T0 here:
+    #0 0x7fce98efd9c7 in malloc ../../../../src/libsanitizer/asan/asan_malloc_linux.cpp:69
+    #1 0x557ea85ab27e in main /home/claude/lab2/original/snippet2_use_after_free.c:13
+    #2 0x7fce98a2a1c9  (/lib/x86_64-linux-gnu/libc.so.6+0x2a1c9) (BuildId: 8e9fd827446c24067541ac5390e6f527fb5947bb)
+    #3 0x7fce98a2a28a in __libc_start_main (/lib/x86_64-linux-gnu/libc.so.6+0x2a28a) (BuildId: 8e9fd827446c24067541ac5390e6f527fb5947bb)
+    #4 0x557ea85ab1a4 in _start (/home/claude/lab2/original/snippet2_use_after_free_asan+0x11a4) (BuildId: 5496fdff01bf9848b703c0cd0241fdcf55862887)
+
+SUMMARY: AddressSanitizer: heap-use-after-free ../../../../src/libsanitizer/sanitizer_common/sanitizer_common_interceptors_format.inc:563 in printf_common
+Shadow bytes around the buggy address:
+  0x502ffffffd80: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0x502ffffffe00: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0x502ffffffe80: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0x502fffffff00: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0x502fffffff80: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+=>0x503000000000: fa fa 00 00 00 fa fa fa[fd]fd fd fd fa fa fa fa
+  0x503000000080: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x503000000100: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x503000000180: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x503000000200: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x503000000280: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+Shadow byte legend (one shadow byte represents 8 application bytes):
+  Addressable:           00
+  Partially addressable: 01 02 03 04 05 06 07 
+  Heap left redzone:       fa
+  Freed heap region:       fd
+  Stack left redzone:      f1
+  Stack mid redzone:       f2
+  Stack right redzone:     f3
+  Stack after return:      f5
+  Stack use after scope:   f8
+  Global redzone:          f9
+  Global init order:       f6
+  Poisoned by user:        f7
+  Container overflow:      fc
+  Array cookie:            ac
+  Intra object redzone:    bb
+  ASan internal:           fe
+  Left alloca redzone:     ca
+  Right alloca redzone:    cb
+==129==ABORTING

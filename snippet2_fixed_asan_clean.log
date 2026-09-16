@@ -1,0 +1,4 @@
+=== snippet2 ===
+Before free: roll_no:2026CSE001
+Pointer safely nullified after free; no stale access.
+exit: 0

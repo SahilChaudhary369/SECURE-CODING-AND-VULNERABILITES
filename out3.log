@@ -1,0 +1,26 @@
+=================================================================
+==131==ERROR: AddressSanitizer: attempting double-free on 0x503000000040 in thread T0:
+    #0 0x7fcac3efc4d8 in free ../../../../src/libsanitizer/asan/asan_malloc_linux.cpp:52
+    #1 0x56095851e3f4 in main /home/claude/lab2/original/snippet3_double_free.c:27
+    #2 0x7fcac3a2a1c9  (/lib/x86_64-linux-gnu/libc.so.6+0x2a1c9) (BuildId: 8e9fd827446c24067541ac5390e6f527fb5947bb)
+    #3 0x7fcac3a2a28a in __libc_start_main (/lib/x86_64-linux-gnu/libc.so.6+0x2a28a) (BuildId: 8e9fd827446c24067541ac5390e6f527fb5947bb)
+    #4 0x56095851e1c4 in _start (/home/claude/lab2/original/snippet3_double_free_asan+0x11c4) (BuildId: 20205fd23c927e1653bbfcff30cdb85cdaa36d7e)
+
+0x503000000040 is located 0 bytes inside of 20-byte region [0x503000000040,0x503000000054)
+freed by thread T0 here:
+    #0 0x7fcac3efc4d8 in free ../../../../src/libsanitizer/asan/asan_malloc_linux.cpp:52
+    #1 0x56095851e2a4 in cleanup /home/claude/lab2/original/snippet3_double_free.c:11
+    #2 0x56095851e3e8 in main /home/claude/lab2/original/snippet3_double_free.c:25
+    #3 0x7fcac3a2a1c9  (/lib/x86_64-linux-gnu/libc.so.6+0x2a1c9) (BuildId: 8e9fd827446c24067541ac5390e6f527fb5947bb)
+    #4 0x7fcac3a2a28a in __libc_start_main (/lib/x86_64-linux-gnu/libc.so.6+0x2a28a) (BuildId: 8e9fd827446c24067541ac5390e6f527fb5947bb)
+    #5 0x56095851e1c4 in _start (/home/claude/lab2/original/snippet3_double_free_asan+0x11c4) (BuildId: 20205fd23c927e1653bbfcff30cdb85cdaa36d7e)
+
+previously allocated by thread T0 here:
+    #0 0x7fcac3efd9c7 in malloc ../../../../src/libsanitizer/asan/asan_malloc_linux.cpp:69
+    #1 0x56095851e2bd in main /home/claude/lab2/original/snippet3_double_free.c:15
+    #2 0x7fcac3a2a1c9  (/lib/x86_64-linux-gnu/libc.so.6+0x2a1c9) (BuildId: 8e9fd827446c24067541ac5390e6f527fb5947bb)
+    #3 0x7fcac3a2a28a in __libc_start_main (/lib/x86_64-linux-gnu/libc.so.6+0x2a28a) (BuildId: 8e9fd827446c24067541ac5390e6f527fb5947bb)
+    #4 0x56095851e1c4 in _start (/home/claude/lab2/original/snippet3_double_free_asan+0x11c4) (BuildId: 20205fd23c927e1653bbfcff30cdb85cdaa36d7e)
+
+SUMMARY: AddressSanitizer: double-free ../../../../src/libsanitizer/asan/asan_malloc_linux.cpp:52 in free
+==131==ABORTING

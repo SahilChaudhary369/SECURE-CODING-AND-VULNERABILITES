@@ -1,0 +1,6 @@
+=== snippet1 (with ASAN_OPTIONS=allocator_may_return_null=1) ===
+==179==WARNING: AddressSanitizer failed to allocate 0xffffffffffffffff bytes
+Error: allocation of 18446744073709551615 bytes failed
+build_record failed safely, no crash occurred
+Record created: student
+exit: 0

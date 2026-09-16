@@ -1,0 +1,4 @@
+=== snippet3 ===
+marks[0] = 0
+Cleanup completed safely, no double-free occurred.
+exit: 0

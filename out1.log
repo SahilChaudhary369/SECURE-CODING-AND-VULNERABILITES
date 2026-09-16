@@ -1,0 +1,12 @@
+=================================================================
+==127==ERROR: AddressSanitizer: requested allocation size 0xffffffffffffffff (0x800 after adjustments for alignment, red zones etc.) exceeds maximum supported size of 0x10000000000 (thread T0)
+    #0 0x7f52f6afd9c7 in malloc ../../../../src/libsanitizer/asan/asan_malloc_linux.cpp:69
+    #1 0x555b18ede248 in build_record /home/claude/lab2/original/snippet1_unchecked_return.c:13
+    #2 0x555b18ede2b7 in main /home/claude/lab2/original/snippet1_unchecked_return.c:23
+    #3 0x7f52f662a1c9  (/lib/x86_64-linux-gnu/libc.so.6+0x2a1c9) (BuildId: 8e9fd827446c24067541ac5390e6f527fb5947bb)
+    #4 0x7f52f662a28a in __libc_start_main (/lib/x86_64-linux-gnu/libc.so.6+0x2a28a) (BuildId: 8e9fd827446c24067541ac5390e6f527fb5947bb)
+    #5 0x555b18ede164 in _start (/home/claude/lab2/original/snippet1_unchecked_return_asan+0x1164) (BuildId: c57fab719c3b2d452381923904240a08d5ea15d3)
+
+==127==HINT: if you don't care about these errors you may set allocator_may_return_null=1
+SUMMARY: AddressSanitizer: allocation-size-too-big ../../../../src/libsanitizer/asan/asan_malloc_linux.cpp:69 in malloc
+==127==ABORTING
